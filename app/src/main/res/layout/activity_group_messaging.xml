@@ -1,0 +1,210 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_100"
+    android:id="@+id/chat_layout"
+    tools:context=".activities.GroupMessagingActivity">
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar_group_messaging"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messageList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/colorAccent"
+        android:padding="5dp"
+        android:layout_above="@+id/bottomlayout"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_above="@id/bottomlayout">
+
+        <com.example.smc_cuuzy.test.widget.RevealFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/media_attach_menu" />
+
+        </com.example.smc_cuuzy.test.widget.RevealFrameLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomlayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/messageItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_weight="1"
+            android:minHeight="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:visibility="visible">
+
+            <ImageView
+                app:srcCompat="@drawable/ic_smiley"
+                android:layout_width="25dp"
+                android:tint="@color/secondary_text"
+                android:layout_height="25dp"
+                android:id="@+id/emojiButton" />
+
+            <EditText
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/messageField"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollHorizontally="false"
+                android:hint="@string/type_message"
+                android:maxLines="4"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:inputType="textMultiLine"
+                android:textSize="18sp"
+                android:textColorHint="#c4c0bd"
+                android:background="@null"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/attach"
+                android:src="@drawable/ic_action_attachment"
+                android:layout_width="wrap_content"
+                android:tint="@color/secondary_text"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:id="@+id/camera"
+                app:srcCompat="@drawable/ic_camera"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="5dp"
+                android:tint="@color/secondary_text"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp" />
+
+        </LinearLayout>
+
+
+        <com.example.smc_cuuzy.test.widget.FrameLayoutFixed
+            android:id="@+id/record_panel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/slideText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="1dp"
+                    app:srcCompat="@drawable/ic_slider_gray" />
+
+                <TextView
+                    android:id="@+id/slideToCancelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="#ffffffff"
+                android:orientation="horizontal"
+                android:paddingLeft="13dp" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="1dp"
+                    app:srcCompat="@drawable/ic_mic_red" />
+
+                <TextView
+                    android:id="@+id/recording_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="00:00"
+                    android:textColor="#4d4c4b"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </com.example.smc_cuuzy.test.widget.FrameLayoutFixed>
+
+        <com.example.smc_cuuzy.test.widget.CircularButton
+            android:id="@+id/send"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:srcCompat="@drawable/ic_action_send_now"
+            app:buttonColor="@color/teal"
+            app:shadowColor="@color/secondary_text"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:padding="5dp"
+            android:visibility="gone"/>
+
+        <com.example.smc_cuuzy.test.widget.CircularButton
+            android:id="@+id/record"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_action_mic"
+            app:buttonColor="@color/teal"
+            app:shadowColor="@color/secondary_text"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:padding="5dp"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+</RelativeLayout>
