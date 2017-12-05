@@ -27,11 +27,13 @@ import com.example.smc_cuuzy.test.helpers.Main;
 
 
 public class MainActivity extends AppCompatActivity{
+    static int CAMERA_PIC_REQUEST = 1;
     public TabLayout tabLayout;
     Toolbar toolbar;
     int toolbarMargin;
     FloatingActionButton fab;
     Intent mIntent;
+     boolean check_current_screen = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +99,21 @@ public class MainActivity extends AppCompatActivity{
 
                 switch (tab.getPosition()) {
                     case 0:
-                        toolbar.setVisibility(View.GONE);
-                        tabLayout.setVisibility(View.GONE);
-                        fab.setVisibility(View.GONE);
+                        opencamera();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            findViewById(R.id.chatCounter).setBackground(Main.getDrawable(MainActivity.this, R.drawable.bg_circle_tab_counter));
+                        }
+                        ((TextView) findViewById(R.id.titleChats)).setTextColor(Main.getColor(MainActivity.this, R.color.white));
+                        fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.ic_action_chat);
+                        fab.setOnClickListener(v -> {
+                            mIntent = new Intent(MainActivity.this, SelectContactActivity.class);
+                            startActivity(mIntent);
+                        });
+              /*          toolbar.setVisibility(View.VISIBLE);
+                        tabLayout.setVisibility(View.VISIBLE);
+                        fab.setVisibility(View.VISIBLE);*/
+
                         break;
                     case 1:
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -135,7 +149,7 @@ public class MainActivity extends AppCompatActivity{
                     case 0:
                         toolbar.setVisibility(View.VISIBLE);
                         tabLayout.setVisibility(View.VISIBLE);
-                        break;
+                         break;
                     case 1:
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             findViewById(R.id.chatCounter).setBackground(Main.getDrawable(MainActivity.this, R.drawable.bg_circle_tab_counter_unselected));
@@ -171,8 +185,15 @@ public class MainActivity extends AppCompatActivity{
 
                 switch (tab.getPosition()) {
                     case 0:
-                        toolbar.setVisibility(View.GONE);
-                        tabLayout.setVisibility(View.GONE);
+                        toolbar.setVisibility(View.VISIBLE);
+                        tabLayout.setVisibility(View.VISIBLE);
+                        //opencamera();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            findViewById(R.id.chatCounter).setBackground(Main.getDrawable(MainActivity.this, R.drawable.bg_circle_tab_counter));
+                        }
+                        ((TextView) findViewById(R.id.titleChats)).setTextColor(Main.getColor(MainActivity.this, R.color.white));
+                        fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.ic_action_chat);
                         break;
                     case 1:
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -264,6 +285,11 @@ public class MainActivity extends AppCompatActivity{
                 default: return null;
             }
         }
+    }
+    void opencamera()
+    {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
     }
 
 }

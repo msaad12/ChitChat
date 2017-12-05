@@ -3,7 +3,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.smc_cuuzy.test"
         minSdkVersion 12
@@ -39,4 +39,5 @@ dependencies {
     compile 'com.futuremind.recyclerfastscroll:fastscroll:0.2.5'
     compile 'com.google.android.gms:play-services-ads:10.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 }
